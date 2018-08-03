@@ -8,10 +8,13 @@ import { Observable } from 'rxjs'
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  users$: Object;
 
-  constructor() { }
+  constructor(private data: DataService) { }
 
-  ngOnInit() {
+  ngOnInit() { // Runs when component loads
+    this.data.getUsers().subscribe(data => this.users$ = data)
+    // We're subscribing to our getUsers method and binding our users$ object to the results returned by the API
   }
 
 }
